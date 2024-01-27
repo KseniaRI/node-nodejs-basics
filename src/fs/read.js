@@ -1,5 +1,13 @@
+import { resolve } from 'path';
+import { readFile } from 'fs';
+
+const filePath = resolve('src/fs/files/fileToRead.txt');
+
 const read = async () => {
-    // Write your code here 
+    readFile(filePath, (err, data) => {
+        if (err) throw new Error('FS operation failed');
+        console.log(data.toString())
+    })
 };
 
 await read();

@@ -12,7 +12,7 @@ const copy = async () => {
             if (err) throw err;
         }); 
         readdir(srcPath, (err, files) => {
-            if (err) throw new Error("FS operation failed");;
+            if (err) throw new Error("FS operation failed");
 
             files.map(file => {
                 readFile(`${srcPath}/${file}`, (err, data) => {
