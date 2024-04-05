@@ -1,5 +1,22 @@
+import { resolve } from 'path';
+import { rename as renameFs, readFile } from 'fs';
+
+const wrongFilePath = resolve('src/fs/files/wrongFilename.txt');
+const properFilePath = resolve('src/fs/files/properFilename.md');
+
 const rename = async () => {
-    // Write your code here 
+    readFile(wrongFilePath, (err) => {
+        if (err) throw new Error('FS operation failed');
+
+        readFile(properFilePath, (err) => {
+            if (!err) throw new Error('FS operation failed');
+        })
+
+        renameFs(wrongFilePath, properFilePath, (err) => {
+            if (err) throw err;
+            console.log('Rename complete!');
+        });
+    })
 };
 
 await rename();
